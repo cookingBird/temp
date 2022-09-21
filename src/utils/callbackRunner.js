@@ -1,13 +1,3 @@
-export default function () {
-  this.runnerChain = [];
-  this.push = (...fn) => this.runnerChain.push(...fn);
-  this.remove = (i) => this.runnerChain.splice(i - 1, 1);
-  this.run = (res) => {
-    if (this.runnerChain.length > 0) {
-      this.runnerChain.forEach((fn) => fn(res));
-    }
-  };
-}
 export class Runner {
   constructor() {
     this.queue = [];
