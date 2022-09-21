@@ -25,6 +25,6 @@ const router = new VueRouter({
   routes,
 });
 
-new NProgressPlugin(router);
-
+const NProgress = new NProgressPlugin();
+NProgress.install(router);
 export default router;

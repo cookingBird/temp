@@ -1,12 +1,23 @@
 import nprogress from 'nprogress';
-// NProgress 配置
-nprogress.configure({
-  setting: {
-    showSpinner: false,
-  },
-});
+import exceptKeys from '@/utils/tools/exceptKeys';
+
 export default class NProgressPlugin {
-  constructor(router) {
+  /**
+   * @param {object} options nprogress参数
+   * @reference https://www.npmjs.com/package/nprogress
+   */
+  constructor(options = {}) {
+    const { setting = {} } = options;
+    // NProgress 配置
+    nprogress.configure({
+      setting: {
+        showSpinner: false,
+        ...setting,
+      },
+      ...exceptKeys(options, 'setting'),
+    });
+  }
+  install(router) {
     router.beforeEach((to, from, next) => {
       nprogress.start();
       setTimeout(next, 700);
