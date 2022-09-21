@@ -1,6 +1,12 @@
 export default function (source, ...keys) {
+  const allKeys = keys.reduce((pre, cur) => {
+    return {
+      ...pre,
+      [cur]: true,
+    };
+  }, {});
   return Object.keys(source).reduce((pre, cur) => {
-    if (keys.includes(cur)) {
+    if (allKeys[cur]) {
       return pre;
     }
     return {
