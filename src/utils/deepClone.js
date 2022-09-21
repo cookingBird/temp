@@ -1,8 +1,7 @@
 /**
  * 深拷贝，只支持，Number|String|Boolean|Null|Undefined类型
- * @param { ref } tar 目标对象
- * @returns 深拷贝得到的对象
- * @type ref {Object|Array}
+ * @param { Object|Array } tar 目标对象
+ * @returns  { Object|Array } 深拷贝得到的对象
  */
 function deepClone(tar) {
   const isPrimaryValue = (e) => /\[object (Number|String|Boolean)\]/g.test(e);
