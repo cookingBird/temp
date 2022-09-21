@@ -1,15 +1,17 @@
 const { defineConfig } = require('@vue/cli-service');
-const path = require('path');
 //按需引入nodeJs模块
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const path = require('path');
 const getFormatDateNow = require('./webpack-plugin/getFormateDataNow');
 const ZipPlugin = require('./webpack-plugin/zip-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
+const publicPath = isProduction ? '/main/' : './';
+
 const CDN = {
   js: ['cdn/cesium/Cesium.js', 'cdn/vue/vue.min.js'],
   css: [],
 };
-const publicPath = isProduction ? '/main/' : './';
+
 module.exports = defineConfig({
   publicPath,
   transpileDependencies: true,
