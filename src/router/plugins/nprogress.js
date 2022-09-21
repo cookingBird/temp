@@ -1,4 +1,5 @@
 import nprogress from 'nprogress';
+import 'nprogress/nprogress.css';
 import exceptKeys from '@/utils/tools/exceptKeys';
 
 export default class NProgressPlugin {
