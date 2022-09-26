@@ -1,0 +1,11 @@
+{
+  "name": "vue-cli-plugin-babel-tools",
+  "version": "1.0.0",
+  "description": "vue-cli plugin to add babel plugin tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

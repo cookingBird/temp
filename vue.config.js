@@ -2,8 +2,8 @@ const { defineConfig } = require('@vue/cli-service');
 //按需引入nodeJs模块
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const path = require('path');
-const getFormatDateNow = require('./webpack-plugin/getFormateDataNow');
-const ZipPlugin = require('./webpack-plugin/zip-plugin');
+const getFormatDateNow = require('./utils/getFormateDataNow');
+const ZipPlugin = require('./plugins/zip-better-webpack-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 const publicPath = isProduction ? '/main/' : './';
 
