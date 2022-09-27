@@ -9,5 +9,16 @@ module.exports = function (api) {
       '@babel/plugin-syntax-import-meta': '^7.10.4',
       'babel-plugin-transform-remove-console': '^6.9.4',
     },
+    babel: {
+      plugins: [
+        '@babel/plugin-syntax-import-meta',
+        '@babel/plugin-proposal-optional-chaining',
+        '@babel/plugin-proposal-nullish-coalescing-operator',
+        '@babel/plugin-proposal-logical-assignment-operators',
+        '@babel/plugin-proposal-export-namespace-from',
+        '@babel/plugin-proposal-export-default-from',
+        ['transform-remove-console', { 'exclude': ['error', 'warn'] }],
+      ],
+    },
   }));
 };

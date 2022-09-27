@@ -7,6 +7,6 @@ module.exports = {
     '@babel/plugin-proposal-logical-assignment-operators',
     '@babel/plugin-proposal-export-namespace-from',
     '@babel/plugin-proposal-export-default-from',
-    ['transform-remove-console',{ 'exclude': ['error','warn'] }],
+    ['transform-remove-console', { 'exclude': ['error', 'warn'] }],
   ],
 };
