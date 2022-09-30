@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import * as Storage from "@/storage";
-export const useGlobal = defineStore("main", {
+export const useGlobal = defineStore("global", {
   state: () => ({
     token: void 0 || Storage.getToken(),
     userId: void 0 || Storage.getUserId(),

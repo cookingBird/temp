@@ -1,7 +1,8 @@
 module.exports = function (api) {
   api.extendPackage((pkg) => ({
-    devDependencies: {
+    dependencies: {
       pinia: "latest",
     },
   }));
+  api.render("./template");
 };

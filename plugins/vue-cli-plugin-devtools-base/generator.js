@@ -1,6 +1,6 @@
 module.exports = function (api) {
   api.extendPackage((pkg) => ({
-    devDependencies: {
+    dependencies: {
       axios: "latest",
       "element-ui": "^2.15.x",
       nprogress: "^0.2.x",
