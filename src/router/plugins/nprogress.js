@@ -18,6 +18,7 @@ export default class NProgressPlugin {
       ...exceptKeys(options, 'setting'),
     });
   }
+
   install(router) {
     router.beforeEach((to, from, next) => {
       nprogress.start();

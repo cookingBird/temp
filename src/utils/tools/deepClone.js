@@ -16,7 +16,7 @@ function deepClone(tar) {
   if (isArray(type)) return tar.map(deepClone);
   const res = {};
   if (isObject(type)) {
-    for (let key in tar) {
+    for (const key in tar) {
       res[key] = deepClone(tar[key]);
     }
     return res;

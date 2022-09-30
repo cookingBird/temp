@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import NProgressPlugin from './plugins/nprogress';
 
 Vue.use(VueRouter);
 
@@ -25,6 +24,4 @@ const router = new VueRouter({
   routes,
 });
 
-const NProgress = new NProgressPlugin();
-NProgress.install(router);
 export default router;

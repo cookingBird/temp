@@ -8,18 +8,18 @@
 export function getFormatDateNow(dateTimeConnector, dateSeparator, timeSeparator) {
   const date = [];
   const time = [];
-  let dateTime = new Date();
-  let year = dateTime.getFullYear(); //获取当前年份
+  const dateTime = new Date();
+  const year = dateTime.getFullYear(); // 获取当前年份
   date.push(year);
-  let month = dateTime.getMonth() + 1; //获取当前月份
+  const month = dateTime.getMonth() + 1; // 获取当前月份
   date.push(month < 10 ? `0${month}` : `${month}`);
-  let day = dateTime.getDate(); //获取当前日
+  const day = dateTime.getDate(); // 获取当前日
   date.push(day < 10 ? `0${day}` : `${day}`);
-  let hour = dateTime.getHours(); //获取小时
+  const hour = dateTime.getHours(); // 获取小时
   time.push(hour < 10 ? `0${hour}` : `${hour}`);
-  let minutes = dateTime.getMinutes(); //获取分
+  const minutes = dateTime.getMinutes(); // 获取分
   time.push(minutes < 10 ? `0${minutes}` : `${minutes}`);
-  let second = dateTime.getSeconds(); //获取秒
+  const second = dateTime.getSeconds(); // 获取秒
   time.push(second < 10 ? `0${second}` : `${second}`);
   return [date.join(dateSeparator), time.join(timeSeparator)].join(dateTimeConnector);
 }
