@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- 使用 CDN 的 CSS 文件 start -->
+    <% for (var i in htmlWebpackPlugin.options.CDN && htmlWebpackPlugin.options.CDN.css) { %>
+      <link href="<%= htmlWebpackPlugin.options.CDN.css[i] %>" rel="preload" as="style" />
+    <% } %>
+    <!-- 使用 CDN 的 CSS 文件 end -->
+
+    <!-- 使用 CDN 的 JS 文件 -->
+    <% for (var i in htmlWebpackPlugin.options.CDN && htmlWebpackPlugin.options.CDN.js) { %>
+      <link href="<%= htmlWebpackPlugin.options.CDN.js[i] %>" rel="preload" as="script" />
+    <% } %>
+    <!-- 使用 CDN 的 JS 文件 end -->
+
   </head>
   <body>
     <noscript>
@@ -13,5 +25,8 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <% for (var i in htmlWebpackPlugin.options.CDN && htmlWebpackPlugin.options.CDN.js) { %>
+      <script src="<%= htmlWebpackPlugin.options.CDN.js[i] %>" defer></script>
+    <% } %>
   </body>
 </html>
