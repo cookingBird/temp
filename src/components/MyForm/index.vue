@@ -6,28 +6,45 @@
     v-on="options.listeners"
     class="myForm-container"
   >
-    <template v-for="col,index of options.columns">
-      <div
-        v-if="col.type ==='div' && col.html"
-        :key="index"
-        v-html="col.html"
-        v-bind="col"
-      ></div>
-      <div
-        v-else-if="col.type ==='div'"
-        :key="index"
-        v-bind="col"
-      >
-        {{col.content}}
-      </div>
-      <Node
-        v-else
-        :key="index"
-        :options="col"
-        :model="model"
-      />
-
-    </template>
+    <el-row v-bind="options.row">
+      <template v-for="col of options.columns">
+        <el-col
+          v-bind="col.col"
+          :key="col.prop"
+        >
+          <el-form-item
+            v-show="col.visible === void 0 ? true : col.visible"
+            v-bind="col.itemProps"
+            :prop="col.prop"
+            :label="col.label"
+          >
+            <el-input
+              v-if="col.type ==='input'"
+              v-bind="$utils.exceptKeys(col,'itemProps','prop','label','listeners')"
+              v-on="col.listeners"
+              v-model="model[col.prop]"
+            ></el-input>
+            <el-select
+              v-else-if="col.type ==='select' && col.options"
+              v-bind="$utils.exceptKeys(col,'itemProps','prop','label','listeners')"
+              v-on="col.listeners"
+              v-model="model[col.prop]"
+            >
+              <el-option
+                v-for="item,index in col.col"
+                :key="index"
+                v-bind="item"
+              >
+              </el-option>
+            </el-select>
+            <slot
+              v-else-if="col.slot"
+              :name="col.slotName || col.prop"
+            ></slot>
+          </el-form-item>
+        </el-col>
+      </template>
+    </el-row>
     <footer
       v-if="options.footer"
       v-show="options.footerOptions.visible === void 0 ? true :options.footerOptions.visible"
@@ -49,10 +66,8 @@
 </template>
 
 <script>
-import Node from './components/Node.vue'
 export default {
-  name: "index",
-  components: { Node },
+  name: "MyForm",
   props: {
     options: {
       type: Object,

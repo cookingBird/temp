@@ -26,7 +26,7 @@ function renderFunctionalEl (h,options,ctx) {
       },
     },
     (options.slot && options.slotName)
-      ? ctx.$scopedSlots[options.slotName](this.$data)
+      ? ctx.$scopedSlots[options.slotName](ctx.$data)
       : options.content
         ? options.content
         : options?.children?.map(child => renderFunctionalEl(h,child,ctx))
@@ -56,7 +56,7 @@ function renderEl (h,options,ctx) {
       ...ctx.$utils.exceptKeys(options,'type','class','style','html','content','listeners','events')
     },
     (options.slot && options.slotName)
-      ? ctx.$scopedSlots[options.slotName](this.$data)
+      ? ctx.$scopedSlots[options.slotName](ctx.$data)
       : options.content
         ? options.content
         : options?.children?.map(child => renderEl(h,child,ctx))

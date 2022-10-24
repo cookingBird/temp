@@ -18,7 +18,8 @@
   },
   "vueCompilerOptions": {
     "experimentalCompatMode": 2,
-    "experimentalDisableTemplateSupport": true
+    "experimentalDisableTemplateSupport": true,
+    "target": 2
   },
   "exclude": [
     "node_modules",
