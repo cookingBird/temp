@@ -9,12 +9,9 @@ function renderFunctionalEl (h,options,ctx) {
   return h(
     options.type ? options.type : 'div',
     {
-      staticClass: options.class,
-      staticStyle: options.style,
-      attrs: {
-        src: options.src,
-        alt: options.alt
-      },
+      class: options.class,
+      style: options.style,
+      attrs: options.attrs,
       on: {
         ...Object.assign({},options.listeners),
         ...Object.assign({},Object.keys(options.events || {}).reduce((pre,key) => {
@@ -32,7 +29,7 @@ function renderFunctionalEl (h,options,ctx) {
         : options?.children?.map(child => renderFunctionalEl(h,child,ctx))
   )
 };
-function renderEl (h,options,ctx) {
+function renderEl (h,options,ctx,isFirst = true) {
   return h(
     options.type ? options.type : 'div',
     {
@@ -55,11 +52,21 @@ function renderEl (h,options,ctx) {
       },
       ...ctx.$utils.exceptKeys(options,'type','class','style','html','content','listeners','events')
     },
-    (options.slot && options.slotName)
-      ? ctx.$scopedSlots[options.slotName](ctx.$data)
-      : options.content
-        ? options.content
-        : options?.children?.map(child => renderEl(h,child,ctx))
+    isFirst
+      ? ((options.slot && options.slotName && ctx.$scopedSlots[options.slotName])
+        ? ctx.$scopedSlots[options.slotName](ctx.$data)
+        : (options.slot && !options.slotName && ctx.$scopedSlots.default)
+          ? ctx.$scopedSlots.default(ctx.$data)
+          : options.children
+            ? options.children.map(child => renderEl(h,child,ctx,false))
+            : [options.content]).concat(ctx.$slots.default)
+      : ((options.slot && options.slotName && ctx.$scopedSlots[options.slotName])
+        ? ctx.$scopedSlots[options.slotName](ctx.$data)
+        : (options.slot && !options.slotName && ctx.$scopedSlots.default)
+          ? ctx.$scopedSlots.default(ctx.$data)
+          : options.children
+            ? options.children.map(child => renderEl(h,child,ctx,false))
+            : [options.content])
   )
 }
 export default {
